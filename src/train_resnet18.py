@@ -6,7 +6,7 @@ import torch.optim as optim
 import time
 import tqdm
 
-from networks.resnext import FlowerClassifier
+from networks.resnet18 import FlowerClassifier
 from utils.plot import plot_curve
 
 
