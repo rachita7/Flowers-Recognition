@@ -9,14 +9,11 @@ class FlowerClassifier(torch.nn.Module):
         self.image_size = image_size
         self.num_channels = num_channels
         
-        self.model = torchvision.models.resnext50_32x4d(pretrained=True)
+        self.model = torchvision.models.resnet18(pretrained=True)
         
         self.classifier = torch.nn.Sequential(
-            torch.nn.Linear(self.model.fc.in_features, 256),
-            torch.nn.ReLU(inplace=True),
-            torch.nn.Linear(256, 128),
-            torch.nn.ReLU(inplace=True),
-            torch.nn.Linear(128, num_classes),
+            torch.nn.Flatten(),
+            torch.nn.Linear(self.model.fc.in_features, num_classes)
         )
         
         self.model.fc = self.classifier

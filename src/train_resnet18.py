@@ -104,19 +104,30 @@ def train(model, criterion, optimizer, train_loader, val_loader, num_epochs=40):
         
     return train_loss_history, train_acc_history, val_loss_history, val_acc_history
 
-if __name__ == '__main__':
-    
+
+def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data-directory')
-    parser.add_argument('--model-directory')
+    parser.add_argument('--image-size', default=224, type=int)
+    parser.add_argument('--data-directory', default='../data')
+    parser.add_argument('--model-directory', default='../weights')
+    parser.add_argument('--batch-size', default=32, type=int)
+    parser.add_argument('--n_epochs', default=40, type=int)
     
     args = parser.parse_args()
+    return args
+    
+
+if __name__ == '__main__':
+    
+    args = parse_args()
 
     data_directory = args.data_directory
     model_directory = args.model_directory
     
-    batch_size = 32
-    image_size = 224
+    batch_size = args.batch_size
+    image_size = args.image_size
+    
+    n_epochs = args.n_epochs
     
     transform = transforms.Compose(
         [
@@ -147,7 +158,7 @@ if __name__ == '__main__':
     model = FlowerClassifier(num_classes=102, image_size=image_size)
     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
     
-    history = train(model, criterion, optimizer, train_loader, validation_loader)
+    history = train(model, criterion, optimizer, train_loader, validation_loader, num_epochs=n_epochs)
     
     train_loss_history, train_acc_histroy, val_loss_history, val_acc_history = history
     
