@@ -1,7 +1,8 @@
 # 🌸 Flower Recognition with Oxford Flowers 102 Dataset  
 
+Academic Project for CZ4042 Neural Networks and Deep Learning (NTU).
+
 ## Overview  
-Academic Project for CZ4042 Neural Networks and Deep Learning (NTU)
 Flower recognition is a significant research area in **Computer Vision**, involving fine-grained image classification where subtle differences between flower categories pose a challenge. This project tackles these challenges using advanced techniques, achieving **test accuracies above 95%**.  
 
 Key difficulties include:  
